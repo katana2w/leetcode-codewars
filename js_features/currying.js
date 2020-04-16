@@ -2,7 +2,6 @@ function sum(a) {
 
     let currentSum = a;
     function f(b) {
-        console.log('b ', b);
         currentSum += b;
         return f;
     }
