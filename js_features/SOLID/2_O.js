@@ -1,4 +1,5 @@
 // Open Close Principle
+
 class Shape {
     area() {
         throw new Error('Area method should be implemented!')
