@@ -6,4 +6,8 @@
 
 // https://habr.com/ru/post/351874/
 
-//
+// https://www.toptal.com/javascript/interview-questions
+
+// https://codersera.com/blog/advanced-javascript-interview-questions/
+
+// https://scotch.io/bar-talk/4-javascript-design-patterns-you-should-know
