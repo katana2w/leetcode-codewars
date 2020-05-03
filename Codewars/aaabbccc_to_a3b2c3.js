@@ -11,3 +11,4 @@ function compress(str) {
     }
     return result;
 }
+
