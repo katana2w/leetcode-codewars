@@ -71,3 +71,38 @@ There does not exist i != j for which dislikes[i] == dislikes[j].
 }
 *
 * */
+
+/**
+ * @param {number} N
+ * @param {number[][]} dislikes
+ * @return {boolean}
+ */
+var possibleBipartition = function(N, dislikes) {
+    let graph = [];
+    for (let i = 1; i <= N; ++i)
+        graph[i] = [];
+
+    for (let edge of dislikes) {
+        graph[edge[0]].push(edge[1]);
+        graph[edge[1]].push(edge[0]);
+    }
+
+    let color = new Map();
+    for (let node = 1; node <= N; ++node)
+        if (!color.has(node) && !dfs(node, 0))
+            return false;
+    return true;
+
+    function dfs(node, c) {
+        if (color.has(node))
+            return color.get(node) == c;
+        color.set(node, c);
+
+        for (let nei of graph[node])
+            if (!dfs(nei, c ^ 1))
+                return false;
+        return true;
+    }
+};
+
+console.log(possibleBipartition(5,[[1,2],[2,3],[3,4],[4,5],[1,5]]))

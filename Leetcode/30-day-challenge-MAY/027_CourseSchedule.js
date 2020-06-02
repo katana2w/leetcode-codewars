@@ -77,3 +77,49 @@ Topological sort could also be done via BFS.
     }
 }
 * */
+
+
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {boolean}
+ */
+var canFinish = function(numCourses, prerequisites) {
+    // declare adjacency list
+    let adjlist = [];
+    for (let i = 0; i < numCourses; i++)
+        adjlist[i] = [];
+
+    // initialize adjacency list
+    for (let edge of prerequisites) {
+        let u = edge[0];
+        let v = edge[1];
+        adjlist[u].push(v);
+    }
+
+    // initialize colors to white
+    let color = Array.from({length: numCourses});
+    for (let i = 0; i < color.length; i++) color[i] = 'w';
+
+    // modified DFS
+    // returns true if graph is acyclic, false if graph contains cycle
+    for (let u = 0; u < numCourses; u++)
+        if (color[u] == 'w' && visit(u))
+            return false;
+    return true;
+
+
+    // modified DFS helper function (visit)
+    // returns true if a cycle is found, false otherwise
+    function visit(u) {
+        color[u] = 'g';
+        for (let v of adjlist[u])
+            if (color[v] === 'w' && visit(v) || color[v] === 'g')
+                return true;
+        color[u] = 'b';
+        return false;
+    }
+};
+
+// console.log(canFinish(2,[[1,0]]))
+console.log(canFinish(2,[[1,0],[0,1]]))
