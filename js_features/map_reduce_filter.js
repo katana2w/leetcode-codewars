@@ -197,3 +197,11 @@ let arrB = [5, 2, 6, 7, 1];
 let arrA = [1, 4, 3, 2];
 let arrB = [5, 2, 6, 7, 1];
 arrA.filter(it => arrB.includes(it)); // returns [1, 2]
+
+
+let rr = [[259,770],[448,54],[926,667],[184,139],[840,118],[577,469]];
+var twoCitySchedCost = function(costs) {
+    return costs.reduce((acc, it) => ( acc+= Math.min(it[0], it[1])), 0)
+};
+
+console.log(twoCitySchedCost(rr));
