@@ -39,3 +39,11 @@ Because the 4th row is incomplete, we return 3.
 //     return (int)(Math.sqrt(2 * (long)n + 0.25) - 0.5);
 //   }
 // }
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var arrangeCoins = function(n) {
+    return Math.floor(Math.sqrt(2 * n + 0.25) - 0.5);
+};
