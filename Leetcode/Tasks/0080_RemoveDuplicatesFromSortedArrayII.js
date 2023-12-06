@@ -1,5 +1,4 @@
-/**
- *
+/*
  * Given an integer array nums sorted in non-decreasing order, remove some duplicates in-place such that each unique element appears at most twice. The relative order of the elements should be kept the same.
  *
  * Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
@@ -41,34 +40,35 @@
  *
  * Constraints:
  *
- * 1 <= nums.length <= 3 * 104
+ * 1 <= nums.Length <= 3 * 104
  * -104 <= nums[i] <= 104
  * nums is sorted in non-decreasing order.
  */
-/
+
 
 // my code
-function removeDuplicates(nums: number[]): number {
-    const numsLength = nums.length;
-    if (!numsLength) return 0;
-    let i = 0;
-    let j = i + 2;
-    while (j < nums.length) {
-        j = i + 2;
-        if (nums[i] === nums[j]) {
-            nums.splice(j, 1);
-        } else {
-            i++;
-        }
-    }
-    return nums.length;
-};
+// function removeDuplicates(nums: number[]): number {
+//     const numsLength = nums.length;
+//     if (!numsLength) return 0;
+//     let i = 0;
+//     let j = i + 2;
+//     while (j < nums.length) {
+//         j = i + 2;
+//         if (nums[i] === nums[j]) {
+//             nums.splice(j, 1);
+//         } else {
+//             i++;
+//         }
+//     }
+//     return nums.length;
+// };
 
 // variant 1
-const removeDuplicates = (nums: number[]): number => {
-    let j:number = 2;
+const removeDuplicates = (nums) => {
+    let j = 2;
 
     for (let i = 2; i < nums.length; i++) {
+        debugger
         if (nums[i] !== nums[j - 2]) {
             nums[j++] = nums[i];
         }
@@ -76,3 +76,6 @@ const removeDuplicates = (nums: number[]): number => {
 
     return j;
 };
+
+
+removeDuplicates([1,1,1,1,2,3,3,3])
