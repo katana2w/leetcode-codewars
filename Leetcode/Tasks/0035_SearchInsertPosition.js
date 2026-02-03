@@ -27,7 +27,7 @@ Output: 0
  * @param {number} target
  * @return {number}
  */
-var searchInsert = function(nums, target) {
+var strearchInsert = function(nums, target) {
     let i=0;
     let j=nums.length-1;
 
