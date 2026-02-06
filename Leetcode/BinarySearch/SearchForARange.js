@@ -71,4 +71,24 @@ var searchRange = function(nums, target) {
 // console.log(searchRange([1,3], 1))
 // console.log(searchRange([1,2,3], 3))
 console.log(searchRange([0,0,1,1,2,2,2,2,3,3,4,4,4,5,6,6,6,7,8,8], 4))
-// console.log(searchRange([2,2], 3))
+// console.log(searchRange([2,2], 3)
+// )
+function searchRange(nums: number[], target: number): number[] {
+    const n = nums.length;
+
+    const lowerBound = (x: number): number => {
+        let l = 0, r = n; // r = n (полуинтервал [l, r))
+        while (l < r) {
+            const m = l + Math.floor((r - l) / 2);
+            if (nums[m] >= x) r = m;
+            else l = m + 1;
+        }
+        return l;
+    };
+
+    const left = lowerBound(target);
+    if (left === n || nums[left] !== target) return [-1, -1];
+
+    const right = lowerBound(target + 1) - 1;
+    return [left, right];
+};
