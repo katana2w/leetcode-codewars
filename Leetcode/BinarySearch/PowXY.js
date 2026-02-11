@@ -37,12 +37,7 @@ var myPow = function(x, n) {
     if (n%2 == 0) {
         return temp*temp;
     } else {
-        if(n > 0) {
-            return x * temp * temp;
-        }else{
-            return (temp * temp) / x;
-        }
-
+        return x * temp * temp;
     }
 };
 
