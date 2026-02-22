@@ -22,20 +22,30 @@ Note: Your solution should run in O(log n) time and O(1) space.
  * @param {number[]} nums
  * @return {number}
  */
-var singleNonDuplicate = function(nums) {
-    // for(let x of nums) {
-    //     if(nums.indexOf(x) === nums.lastIndexOf(x)) {
-    //        return x
-    //        }
-    // }
-    // return -1
+function singleNonDuplicate(nums) {
+    let left = 0, right = nums.length - 1;
 
-    for(let i = 0; i < nums.length; i++) {
-        if(nums[i] === nums[i + 1]) {
-            i++
+    while (left < right) {
+        let mid = left + Math.floor((right - left)/2);
+        let half_even = (right - mid) % 2 == 0;
+        if (nums[mid] === nums[mid + 1]) {
+            if (half_even) {
+                left = mid + 2;
+            } else {
+                right = mid - 1;
+            }
+        } else if(nums[mid] === nums[mid - 1]) {
+            if (half_even) {
+                right = mid - 2;
+            } else {
+                left = mid + 1;
+            }
         } else {
-            return nums[i]
+            return nums[mid];
         }
     }
-    return -1
+
+    return nums[left];
 };
+
+console.log(singleNonDuplicate([1,1,3,3,4,4,8,8]))
