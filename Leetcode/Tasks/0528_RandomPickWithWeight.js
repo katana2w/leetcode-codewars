@@ -94,3 +94,45 @@ var param_5 = obj.pickIndex();
     }
 }
 * */
+
+class Solution {
+    private prefix: number[] = [];
+    private total: number = 0;
+
+    constructor(w: number[]) {
+        let sum = 0;
+
+        for (let weight of w) {
+            sum += weight;
+            this.prefix.push(sum);
+        }
+
+        this.total = sum;
+    }
+
+    pickIndex(): number {
+        const target = Math.random() * this.total;
+
+        // binary search
+        let left = 0;
+        let right = this.prefix.length - 1;
+
+        while (left < right) {
+            const mid = left + Math.floor((right - left) / 2);
+
+            if (target < this.prefix[mid]) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return left;
+    }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * var obj = new Solution(w)
+ * var param_1 = obj.pickIndex()
+ */
