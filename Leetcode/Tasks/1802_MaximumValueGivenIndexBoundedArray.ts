@@ -76,3 +76,24 @@ function maxValue(n: number, index: number, maxSum: number): number {
 
     return left;
 }
+
+function maxValue(n: number, index: number, maxSum: number): number {
+    const h1 = 1;
+    let remain = maxSum - n;
+
+    const h2 = Math.min(index + 1, n - index);
+    const sum2 = h2 * h2;
+    if (remain < sum2) {
+        return h1 + Math.floor(Math.sqrt(remain));
+    }
+    remain -= sum2;
+
+    const h3 = n - 2 * h2;
+    const sum3 = ((n + 2 * h2 - 1) * h3) / 2;
+    if (remain < sum3) {
+        const b = (4 * h2 - 1) / 2;
+        return h1 + h2 + Math.floor(Math.sqrt(Math.pow(b, 2) + 2 * remain) - b);
+    }
+
+    return h1 + h2 + h3 + Math.floor((remain - sum3) / n);
+}
