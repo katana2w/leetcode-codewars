@@ -33,3 +33,21 @@ var numTrees = function(n) {
 };
 
 console.log(numTrees(3))
+
+function numTrees(n: number): number {
+    const dp: number[] = new Array(n + 1).fill(0);
+
+    dp[0] = 1;
+    dp[1] = 1;
+
+    for (let nodes = 2; nodes <= n; nodes++) {
+        for (let root = 1; root <= nodes; root++) {
+            const leftCount = root - 1;
+            const rightCount = nodes - root;
+
+            dp[nodes] += dp[leftCount] * dp[rightCount];
+        }
+    }
+
+    return dp[n];
+}
