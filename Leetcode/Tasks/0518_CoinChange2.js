@@ -61,3 +61,16 @@ var change = function(amount, coins) {
 };
 
 console.log(change(5,[1,2,5]));
+
+function change(amount: number, coins: number[]): number {
+    const dp = new Array(amount + 1).fill(0);
+    dp[0] = 1;
+
+    for (const coin of coins) {
+        for (let s = coin; s <= amount; s++) {
+            dp[s] += dp[s - coin];
+        }
+    }
+
+    return dp[amount];
+};
